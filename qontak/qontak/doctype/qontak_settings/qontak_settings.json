@@ -6,11 +6,16 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "qontak_chat_account_section",
   "username",
   "client_id",
   "column_break_fwcqg",
   "password",
-  "client_secret"
+  "client_secret",
+  "whatsapp_section",
+  "message_template_id",
+  "column_break_3qlhi",
+  "channel_integration_id"
  ],
  "fields": [
   {
@@ -44,12 +49,38 @@
   {
    "fieldname": "column_break_fwcqg",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qontak_chat_account_section",
+   "fieldtype": "Section Break",
+   "label": "Qontak Chat Account"
+  },
+  {
+   "fieldname": "whatsapp_section",
+   "fieldtype": "Section Break",
+   "label": "WhatsApp "
+  },
+  {
+   "fieldname": "message_template_id",
+   "fieldtype": "Data",
+   "label": "Message Template ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "channel_integration_id",
+   "fieldtype": "Data",
+   "label": "Channel Integration ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3qlhi",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-03-14 13:00:11.069232",
+ "modified": "2023-03-14 17:57:05.042268",
  "modified_by": "Administrator",
  "module": "Qontak",
  "name": "Qontak Settings",
