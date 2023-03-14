@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include qontak *.css
+recursive-include qontak *.csv
+recursive-include qontak *.html
+recursive-include qontak *.ico
+recursive-include qontak *.js
+recursive-include qontak *.json
+recursive-include qontak *.md
+recursive-include qontak *.png
+recursive-include qontak *.py
+recursive-include qontak *.svg
+recursive-include qontak *.txt
+recursive-exclude qontak *.pyc
