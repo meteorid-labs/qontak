@@ -47,9 +47,10 @@
    "fieldtype": "Column Break"
   }
  ],
+ "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-03-14 12:50:35.311948",
+ "modified": "2023-03-14 12:57:59.546908",
  "modified_by": "Administrator",
  "module": "Qontak",
  "name": "Qontak Settings",
