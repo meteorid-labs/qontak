@@ -1,5 +1,6 @@
 import requests
 import frappe
+from qontak.utils.whatsapp import whatsapp_phone_number
 
 
 class QontakApi():
@@ -14,20 +15,32 @@ class QontakApi():
         self.get_access_token()
 
     def setup_credentials(self):
-        qs = frappe.get_doc("Qontak Settings", "Qontak Settings")
+        qos = frappe.get_doc("Qontak Settings", "Qontak Settings")
 
-        # if one of the value is None, raise error
-        if not all([qs.username, qs.password, qs.client_id, qs.client_secret]):
+        if not qos.qontak_account:
             frappe.throw('Please set Qontak Settings first')
 
-        self.username = qs.username
-        self.password = qs.get_password(
+        qoa = frappe.get_doc("Qontak Accounts", qos.qontak_account)
+
+        # if one of the value is None, raise error
+        if not all([
+            qoa.username,
+            qoa.password,
+            qoa.client_id,
+            qoa.client_secret,
+            qoa.message_template_id,
+            qoa.channel_integration_id
+        ]):
+            frappe.throw('Add Qontak Account before using Qontak API')
+
+        self.username = qoa.username
+        self.password = qoa.get_password(
             fieldname="password", raise_exception=False)
-        self.client_id = qs.client_id
-        self.client_secret = qs.get_password(
+        self.client_id = qoa.client_id
+        self.client_secret = qoa.get_password(
             fieldname="client_secret", raise_exception=False)
-        self.message_template_id = qs.message_template_id
-        self.channel_integration_id = qs.channel_integration_id
+        self.message_template_id = qoa.message_template_id
+        self.channel_integration_id = qoa.channel_integration_id
 
     def get_access_token(self):
         if self.access_token is None:
@@ -54,25 +67,22 @@ class QontakApi():
 
                 self.headers.update(auth_header)
 
-    def send_whatsapp_message_outbound_direct(self):
-        url = "https://service-chat.qontak.com/api/open/v1/broadcasts/whatsapp/direct"
+    def send_whatsapp_message_outbound_direct(self, to_name=None, to_number=None, params=None, region=None):
+        url = self.base_url + "/api/open/v1/broadcasts/whatsapp/direct"
 
         payload = {
-            "to_number": "6281901560689",
-            "to_name": "Aslam",
+            "to_number": whatsapp_phone_number(to_number, region),
+            "to_name": to_name,
             "message_template_id": self.message_template_id,
             "channel_integration_id": self.channel_integration_id,
             "language": {"code": "id"},
-            "parameters": {"body": [
-                {
-                    "key": "1",
-                    "value": "otp",
-                    "value_text": "085657"
-                }
-            ]}
+            "parameters": {
+                "body": params
+            }
         }
 
         response = requests.request(
             "POST", url, json=payload, headers=self.headers)
+        response.raise_for_status()
 
-        print(response.text)
+        return response.json()
