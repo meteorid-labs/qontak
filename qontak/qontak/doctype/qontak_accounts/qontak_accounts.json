@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:username",
+ "creation": "2023-03-20 11:24:21.453838",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "qontak_chat_account_section",
+  "username",
+  "client_id",
+  "column_break_yvp1s",
+  "password",
+  "client_secret",
+  "whatsapp_section",
+  "message_template_id",
+  "column_break_lo7ao",
+  "channel_integration_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "qontak_chat_account_section",
+   "fieldtype": "Section Break",
+   "label": "Qontak Chat Account"
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "Username",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Client ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yvp1s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Password",
+   "label": "Client Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "whatsapp_section",
+   "fieldtype": "Section Break",
+   "label": "WhatsApp"
+  },
+  {
+   "fieldname": "message_template_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Message Template ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_lo7ao",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "channel_integration_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Channel Integration ID",
+   "reqd": 1
+  }
+ ],
+ "links": [],
+ "modified": "2023-03-20 11:39:46.198987",
+ "modified_by": "Administrator",
+ "module": "Qontak",
+ "name": "Qontak Accounts",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

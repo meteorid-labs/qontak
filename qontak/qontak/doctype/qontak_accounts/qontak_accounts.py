@@ -4,6 +4,5 @@
 # import frappe
 from frappe.model.document import Document
 
-
-class QontakSettings(Document):
-    pass
+class QontakAccounts(Document):
+	pass
