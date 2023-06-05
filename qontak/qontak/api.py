@@ -83,6 +83,6 @@ class QontakApi():
 
         response = requests.request(
             "POST", url, json=payload, headers=self.headers)
-        response.raise_for_status()
+        # response.raise_for_status()
 
         return response.json()
