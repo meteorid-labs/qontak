@@ -22,6 +22,13 @@ class TestApi(unittest.TestCase):
             }
         ]
 
-        response = QontakApi().send_whatsapp_message_outbound_direct(
-            "Aslam", "6281901560689", params, "ID")
+        qa_username = frappe.get_value("Qontak Accounts", filters={
+                                       "default": 1}, fieldname="username")
+        template = frappe.get_doc("Alfamind Auth Settings")
+
+        response = QontakApi(
+            qa_username=qa_username, message_template_id=template.otp_template
+        ).send_whatsapp_message_outbound_direct(
+            to_name="Test", to_number="6281901560689", params=params, region="ID"
+        )
         print(response)
