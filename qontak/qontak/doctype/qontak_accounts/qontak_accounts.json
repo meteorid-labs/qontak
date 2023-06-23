@@ -1,34 +1,26 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "field:username",
  "creation": "2023-03-20 11:24:21.453838",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "qontak_chat_account_section",
+  "default",
+  "account_section",
   "username",
   "client_id",
   "column_break_yvp1s",
   "password",
   "client_secret",
-  "whatsapp_section",
-  "message_template_id",
-  "column_break_lo7ao",
+  "channel_section",
   "channel_integration_id"
  ],
  "fields": [
   {
-   "fieldname": "qontak_chat_account_section",
-   "fieldtype": "Section Break",
-   "label": "Qontak Chat Account"
-  },
-  {
    "fieldname": "username",
    "fieldtype": "Data",
-   "label": "Username",
+   "label": "Username or Email",
    "reqd": 1,
    "unique": 1
   },
@@ -56,35 +48,39 @@
    "reqd": 1
   },
   {
-   "fieldname": "whatsapp_section",
-   "fieldtype": "Section Break",
-   "label": "WhatsApp"
-  },
-  {
-   "fieldname": "message_template_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Message Template ID",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_lo7ao",
-   "fieldtype": "Column Break"
+   "default": "0",
+   "fieldname": "default",
+   "fieldtype": "Check",
+   "label": "Default"
   },
   {
    "fieldname": "channel_integration_id",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Channel Integration ID",
    "reqd": 1
+  },
+  {
+   "fieldname": "channel_section",
+   "fieldtype": "Section Break",
+   "label": "Channel"
+  },
+  {
+   "fieldname": "account_section",
+   "fieldtype": "Section Break",
+   "label": "Account"
   }
  ],
- "links": [],
- "modified": "2023-03-20 11:39:46.198987",
+ "links": [
+  {
+   "group": "Template",
+   "link_doctype": "Qontak Template",
+   "link_fieldname": "qontak_accounts"
+  }
+ ],
+ "modified": "2023-06-23 14:01:47.874102",
  "modified_by": "Administrator",
  "module": "Qontak",
  "name": "Qontak Accounts",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
