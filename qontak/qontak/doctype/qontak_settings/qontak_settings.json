@@ -1,27 +1,27 @@
 {
  "actions": [],
- "creation": "2023-03-14 12:49:48.664666",
+ "allow_rename": 1,
+ "creation": "2023-06-23 14:18:50.944009",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "qontak_account"
+  "base_api_url"
  ],
  "fields": [
   {
-   "fieldname": "qontak_account",
-   "fieldtype": "Link",
+   "fieldname": "base_api_url",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Qontak account",
-   "options": "Qontak Accounts",
+   "label": "Base api URL",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-03-20 11:56:45.804399",
+ "modified": "2023-06-23 14:19:44.211405",
  "modified_by": "Administrator",
  "module": "Qontak",
  "name": "Qontak Settings",
