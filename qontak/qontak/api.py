@@ -64,4 +64,6 @@ class QontakApi():
         response = requests.request(
             "POST", url, json=payload, headers=self.headers)
 
+        frappe.log_error("Qontak Response", str(response.json()))
+
         return response.json()
