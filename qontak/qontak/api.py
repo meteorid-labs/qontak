@@ -1,6 +1,7 @@
 import requests
 import frappe
 from qontak.utils.whatsapp import whatsapp_phone_number
+import json
 
 
 class QontakApi():
@@ -47,7 +48,7 @@ class QontakApi():
 
                 self.headers.update(auth_header)
 
-    def send_whatsapp_message_outbound_direct(self, to_name=None, to_number=None, params=None, region=None):
+    def send_whatsapp_message_outbound_direct(self, to_name=None, to_number=None, params=None, region=None, source=None):
         url = self.base_url + "/api/open/v1/broadcasts/whatsapp/direct"
 
         payload = {
@@ -64,6 +65,42 @@ class QontakApi():
         response = requests.request(
             "POST", url, json=payload, headers=self.headers)
 
-        frappe.log_error("Qontak Response", str(response.json()))
+        _create_qontak_request(
+            payload=payload, response=response, source=source)
 
         return response.json()
+
+
+def _create_qontak_request(**kwargs):
+    from frappe.utils.background_jobs import enqueue
+    enqueue(
+        _start_store_qontak_request,
+        queue="default",
+        timeout=10000,
+        event="qontak_request",
+        job_name="Qontak Request - {}".format(kwargs["source"]),
+        **kwargs,
+        now=frappe.conf.developer_mode or frappe.flags.in_test,
+    )
+
+
+def _start_store_qontak_request(payload=None, response=None, source=None):
+    response_raw = None
+
+    try:
+        response_raw = response.json()
+    except:
+        response_raw = response.text if response else []
+
+    qontak_request = frappe.new_doc("Qontak Requests")
+    qontak_request.update({
+        "to_name": payload.get("to_name") if payload else "",
+        "to_number": payload.get("to_number") if payload else "",
+        "source": source,
+        "request": json.dumps(payload) if payload else [],
+        "response": json.dumps(response_raw),
+        "status_code": response.status_code,
+        "status": "Success" if response.ok else "Failed",
+    })
+    qontak_request.insert(ignore_permissions=True)
+    frappe.db.commit()

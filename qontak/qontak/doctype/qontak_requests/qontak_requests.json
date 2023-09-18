@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "creation": "2023-09-18 13:23:57.294445",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "to_name",
+  "source",
+  "status_code",
+  "column_break_fzwt2",
+  "to_number",
+  "status",
+  "section_break_zt1wp",
+  "request",
+  "response"
+ ],
+ "fields": [
+  {
+   "fieldname": "to_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "To Name",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "to_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "To Number",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Source",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Success\nFailed",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "status_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status Code",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "section_break_zt1wp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "response",
+   "fieldtype": "Code",
+   "label": "Response",
+   "options": "JSON",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "request",
+   "fieldtype": "Code",
+   "label": "Request Payload",
+   "options": "JSON",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "column_break_fzwt2",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "links": [],
+ "modified": "2023-09-18 13:30:32.181143",
+ "modified_by": "Administrator",
+ "module": "Qontak",
+ "name": "Qontak Requests",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "to_name"
+}
